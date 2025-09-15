@@ -15,7 +15,14 @@ router.post("/events", async(req, res) => {
         capacity,
         bookedSeats,
     });
-    return res.render("saved");
+    return res.render("allEvent");
+});
+router.get("/events", async(req, res) => {
+    const events = await Event.find({});
+    console.log(events);
+    return res.render("allEvent", {
+        events
+    });
 });
 
 module.exports = router;

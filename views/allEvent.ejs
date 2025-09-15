@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Events</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
+      margin: 0;
+      padding: 20px;
+    }
+    h3 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #2c3e50;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease-in-out;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card h4 {
+      margin: 10px 0 5px;
+      color: #34495e;
+    }
+    .card p {
+      margin: 0 0 10px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h3>ALL EVENTS</h3>
+  <div class="container">
+    <% events.forEach(event => { %>
+      <div class="card">
+        <h4>Event ID</h4>
+        <p><%= event.id %></p>
+
+        <h4>Event Name</h4>
+        <p><%= event.name %></p>
+
+        <h4>Event Date</h4>
+        <p><%= event.date.toDateString() %></p> <!-- formatted -->
+
+        <h4>Event Capacity</h4>
+        <p><%= event.capacity %></p>
+
+        <h4>Booked Seats</h4>
+        <p><%= event.bookedSeats %></p>
+      </div>
+    <% }) %>
+  </div>
+</body>
+</html>
