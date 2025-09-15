@@ -6,18 +6,19 @@
     <title>Document</title>
 </head>
 <body>
-    <form>
+    <form method="post" action="/events">
         <label> ID </label>
-        <input type="text" placeholder=""/>
+        <input type="text" placeholder="Id of event" name="id"/>
         <label> Name </label>
-        <input type="text" placeholder=""/>
+        <input type="text" placeholder="Name of event" name="name"/>
         <label> Date </label>
-        <input type="date" placeholder=""/>
+        <input type="date" placeholder="Date of Event" name="date"/>
         <label> Capacity </label>
-        <input type="number" placeholder=""/>
+        <input type="number" placeholder="Capacity of Event" name="capacity"/>
         <label> Booked Seats </label>
-        <input type="number" placeholder=""/>
-        </form>
+        <input type="number" placeholder="Booked Seats of event" name="bookedSeats"/>
         <button type="submit"> Save </button>
+        </form>
+        
 </body>
 </html>

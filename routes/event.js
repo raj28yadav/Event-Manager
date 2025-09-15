@@ -1,10 +1,22 @@
 const express = require("express");
+const mongoose = require("mongoose");
+const Event = require("../models/event");
 const router = express.Router();
 
 router.get("/eventrender", (req, res) => {
     return res.render("event");
 });
-
+router.post("/events", async(req, res) => {
+    const {id, name, date, capacity, bookedSeats} = req.body;
+    await Event.create({
+        id, 
+        name,
+        date, 
+        capacity,
+        bookedSeats,
+    });
+    return res.render("saved");
+});
 
 module.exports = router;
 // POST /events: Create an event with date and capacity.
