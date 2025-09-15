@@ -3,23 +3,24 @@ const mongoose = require("mongoose");
 const Event = require("../models/event");
 const router = express.Router();
 
-router.get("/eventrender", (req, res) => {
+router.get("/eventregister", (req, res) => {
     return res.render("event");
 });
 router.post("/events", async(req, res) => {
     const {id, name, date, capacity, bookedSeats} = req.body;
-    await Event.create({
+    const event = await Event.create({
         id, 
         name,
         date, 
         capacity,
         bookedSeats,
     });
-    return res.render("allEvent");
+    return res.render("sucess", {
+        event
+    });
 });
 router.get("/events", async(req, res) => {
     const events = await Event.find({});
-    console.log(events);
     return res.render("allEvent", {
         events
     });
