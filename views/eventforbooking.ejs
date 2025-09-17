@@ -63,12 +63,18 @@
         <p><%= event.bookedSeats %></p>
       </div>
   </div>
-  <div class="container">
-      <div class="card">
-        <form> 
-            <label>Name Of buyer</label>
+  <div>
+      
+        <form method="post" action="/events/<%=event.id%>/book"> 
+            <label>Customer Id</label>
+            <input type="text" placeholder="XXX@gmail.com" name="emailId"/>
+            <label>Name Customer</label>
+            <input type="text" placeholder="XXX YYY" name="userName"/>
+            <label>Number Of seat to buy</label>
+            <input type="number" placeholder="XXX YYY" name="seatsBooked"/>
+            <button type="submit">Book</button>
         </form>
-      </div>
+      
   </div>
 </body>
 </html>

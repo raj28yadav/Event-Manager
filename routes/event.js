@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const Event = require("../models/event");
+const Booking = require("../models/booking");
 const router = express.Router();
 
 router.get("/eventregister", (req, res) => {
@@ -25,6 +26,32 @@ router.get("/events", async(req, res) => {
         events
     });
 });
+router.get("/events/:id", async(req, res) => {
+    const id = req.params.id;
+    const event = await Event.findOne({id});
+    
+    return res.render("eventforbooking", {
+        event
+    });
+
+});
+router.post("/events/:id/book", async (req, res) => {
+    const id = req.params.id;
+    const { emailId, userName, seatsBooked } = req.body;
+    const book = await Booking.create({
+      emailId,
+      eventId: id, 
+      userName,
+      seatsBooked
+    });
+    const event = await Event.findOneAndUpdate(
+      { id: id },                          
+      { $inc: { bookedSeats: seatsBooked } },
+      { new: true }
+    );
+    return res.render("sucess", { event, book });
+
+});
 
 module.exports = router;
 // POST /events/:id/book: Book seats for an event.
@@ -32,3 +59,4 @@ module.exports = router;
 // Increment bookedSeats on success.
 // GET /events/:id/bookings: List all bookings for an event.
 // DELETE /bookings/:id: Cancel a booking and decrement bookedSeats.
+
