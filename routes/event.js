@@ -27,8 +27,6 @@ router.get("/events", async(req, res) => {
 });
 
 module.exports = router;
-// POST /events: Create an event with date and capacity.
-// GET /events: List all upcoming events.
 // POST /events/:id/book: Book seats for an event.
 // Reject if bookedSeats + seatsBooked > capacity.
 // Increment bookedSeats on success.
