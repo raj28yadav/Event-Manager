@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
+      margin: 0;
+      padding: 20px;
+      color: #2c3e50;
+    }
+    h2, h3 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .event-card {
+      max-width: 700px;
+      margin: 0 auto 40px;
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .event-card h3 {
+      margin-top: 0;
+      text-align: left;
+      color: #34495e;
+    }
+    .event-details {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      row-gap: 10px;
+      column-gap: 20px;
+    }
+    .label {
+      font-weight: bold;
+      color: #555;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease-in-out;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card h4 {
+      margin: 10px 0 5px;
+      color: #34495e;
+    }
+    .card p {
+      margin: 0 0 10px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h2>Event Details</h2>
+  <div class="event-card">
+    <div class="event-details">
+      <div class="label">Event ID</div>
+      <div><%= event.id %></div>
+
+      <div class="label">Event Name</div>
+      <div><%= event.name %></div>
+
+      <div class="label">Event Date</div>
+      <div><%= event.date.toDateString() %></div>
+
+      <div class="label">Capacity</div>
+      <div><%= event.capacity %></div>
+
+      <div class="label">Booked Seats</div>
+      <div><%= event.bookedSeats %></div>
+    </div>
+  </div>
+
+  <h2>All Bookings</h2>
+  <div class="container">
+    <% allBooking.forEach(book => { %>
+      <div class="card">
+        <h4>Email ID</h4>
+        <p><%= book.emailId %></p>
+
+        <h4>Name</h4>
+        <p><%= book.userName %></p>
+
+        <h4>Booked Seats</h4>
+        <p><%= book.seatsBooked %></p>
+        <form method="post" action="">
+            <button type="submit"> Delete </button>
+            </form>
+      </div>
+    <% }) %>
+  </div>
+</body>
+</html>

@@ -52,6 +52,15 @@ router.post("/events/:id/book", async (req, res) => {
     return res.render("sucess", { event, book });
 
 });
+router.get("/events/:id/bookings", async (req, res) => {
+    const Id = req.params.id;
+    const allBooking = await Booking.find({ eventId: Id });
+    const event = await Event.findOne({ id: Id});
+    return res.render("allbook", {
+        allBooking, 
+        event,
+    })
+});
 
 module.exports = router;
 // POST /events/:id/book: Book seats for an event.
