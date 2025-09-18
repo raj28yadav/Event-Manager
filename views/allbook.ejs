@@ -99,7 +99,7 @@
 
         <h4>Booked Seats</h4>
         <p><%= book.seatsBooked %></p>
-        <form method="post" action="">
+        <form method="post" action="/bookings/<%= book.emailId %>?_method=DELETE"">
             <button type="submit"> Delete </button>
             </form>
       </div>

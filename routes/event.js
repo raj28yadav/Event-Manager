@@ -61,6 +61,19 @@ router.get("/events/:id/bookings", async (req, res) => {
         event,
     })
 });
+router.delete("/bookings/:emailId", async (req, res) => {
+        const emailId = req.params.emailId;
+        const booking = await Booking.findOneAndDelete({ emailId });
+        if(!booking){
+            return res.status(404).send("Booking not found");
+        }
+        await Event.findOneAndUpdate(
+            { id: booking.eventId }, 
+            { $inc: { bookedSeats: -booking.seatsBooked }}
+        );
+        return res.redirect(`/events/${booking.eventId}/bookings`);
+});
+
 
 module.exports = router;
 // POST /events/:id/book: Book seats for an event.
